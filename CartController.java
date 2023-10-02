@@ -76,16 +76,12 @@ public class CartController {
 		TblCart cart = new TblCart(f);
 		
 		int productId = f.getProductId();
-		int productCount = f.getProductCount();
 		int tblCount = cartMapper.findCountByUserIdAndProuductId(userId, productId);
-		int result;
+		int result = 0;
 		
 		if (tblCount >= 1) {
-			productCount = productCount + tblCount;
-			cart.setProductCount(productCount);
 			result = cartMapper.update(cart);
 		} else  {
-			cart.setProductCount(productCount);
 			result = cartMapper.insert(cart);
 		}
 		
